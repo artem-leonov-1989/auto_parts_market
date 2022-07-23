@@ -9,6 +9,6 @@ Route::middleware('auth:api')
     ->group(function () {
         Route::post('login', 'login')->withoutMiddleware('auth:api');
         Route::post('register', 'register')->withoutMiddleware('auth:api');
-        Route::get('logout', 'logout');
+        Route::post('logout', 'logout');
         Route::post('refresh', 'refresh');
     });
