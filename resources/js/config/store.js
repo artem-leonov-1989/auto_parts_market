@@ -5,7 +5,8 @@ const store = createStore({
         return {
             userName: undefined,
             token: undefined,
-            role: 'buyer'
+            role: 'buyer',
+            registered: false,
         }
     },
     getters: {
@@ -17,6 +18,9 @@ const store = createStore({
         },
         ROLE: state => {
             return state.role
+        },
+        REGISTERED: state => {
+            return state.registered
         }
     },
     mutations: {
@@ -28,7 +32,10 @@ const store = createStore({
         },
         SET_ROLE: (state, payload) => {
             state.role = payload;
-        }
+        },
+        SET_REGISTERED: (state, payload) => {
+            state.registered = payload;
+        },
     },
     actions: {
 

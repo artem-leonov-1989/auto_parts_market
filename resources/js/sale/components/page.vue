@@ -1,13 +1,14 @@
 <template>
-<div class="h3">
-    Продажа
-</div>
+<sale-bar></sale-bar>
+
 </template>
 
 <script>
 export default {
+    components: {
+
+    },
     mounted() {
-        console.log(this.$store.getters.ROLE)
         if (this.$store.getters.ROLE === 'buyer')
             this.$router.push('/')
     }

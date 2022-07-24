@@ -1,15 +1,18 @@
 <template>
-    <div class="h2">
-        Клиенты
-    </div>
+<shop-bar></shop-bar>
 </template>
 
 <script>
+
+
 export default {
     date() {
         return {
-            isManager: false
+            isManager: false,
         }
+    },
+    methods: {
+
     },
     watch: {
         isManager: function (val) {
