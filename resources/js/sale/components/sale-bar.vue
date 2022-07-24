@@ -1,6 +1,6 @@
 <template>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
+        <div class="container-fluid justify-content-between">
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <router-link to="/sale" class="nav-link my-nav-link">Замовлення</router-link>
