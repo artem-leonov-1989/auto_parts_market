@@ -16,6 +16,7 @@ Route::middleware('auth:api')
         Route::post('register', 'register')->withoutMiddleware('auth:api');
         Route::post('logout', 'logout');
         Route::post('refresh', 'refresh');
+        Route::get('role', 'role');
     });
 
 Route::apiResources([

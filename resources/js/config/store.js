@@ -21,7 +21,7 @@ const store = createStore({
     },
     mutations: {
         SET_TOKEN: (state, payload) => {
-            state.TOKEN = payload;
+            state.token = payload;
         },
         SET_USERNAME: (state, payload) => {
             state.userName = payload;

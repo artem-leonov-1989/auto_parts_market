@@ -6,9 +6,10 @@
 
 <script>
 export default {
-   mounted() {
-       if (this.$store.getters.ROLE === 'buyer')
-       this.$router.push('/')
-   }
+    mounted() {
+        console.log(this.$store.getters.ROLE)
+        if (this.$store.getters.ROLE === 'buyer')
+            this.$router.push('/')
+    }
 }
 </script>
