@@ -10,8 +10,8 @@
 
 <script>
 
-import {instance} from "../../config/axios";
-import isAuth from "../../сomponents/mixins/isAuth";
+import {instance} from "../config/axios";
+import isAuth from "./mixins/isAuth";
 
 export default {
     mixins: [
@@ -37,6 +37,9 @@ export default {
                             localStorage.token = response.data.authorisation.token;
                             this.$store.commit('SET_ROLE', response.data.user.role);
                             this.$store.commit('SET_USERNAME', response.data.user.name)
+                            if(response.data.user.role === 'manager') {
+                                this.$router.push('/sale')
+                            }
                         } else {
                             this.error = response.data.message
                         }
@@ -52,6 +55,7 @@ export default {
                 this.$store.commit('SET_ROLE', 'buyer');
                 this.$store.commit('SET_USERNAME', undefined);
                 localStorage.removeItem('token')
+                this.$router.push('/')
             }).catch(e => {
                 console.log(e);
             })

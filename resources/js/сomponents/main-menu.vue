@@ -11,7 +11,7 @@
                         <router-link to="/sale/handbook" class="nav-link my-nav-link">Розділи</router-link>
                     </li>
                     <li class="nav-item">
-                        <router-link to="/sale/handbook" class="nav-link my-nav-link">Комплектуючі</router-link>
+                        <router-link to="/sale" class="nav-link my-nav-link">Комплектуючі</router-link>
                     </li>
                 </ul>
             </div>
@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import login from "../shop/components/login.vue";
+import login from "./login.vue";
 import isAuth from "./mixins/isAuth";
 
 export default {

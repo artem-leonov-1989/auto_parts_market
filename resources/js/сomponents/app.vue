@@ -1,5 +1,6 @@
 <template>
-<main-menu></main-menu>
+    <main-menu></main-menu>
+    <router-view></router-view>
 </template>
 
 <script>
