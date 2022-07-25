@@ -25,11 +25,14 @@ export default {
     methods: {
         chooseBrand(id) {
             this.$store.commit('SET_BRAND', id)
-            this.selectId = id
         },
-    },
-    computed: {
-
+        buttonClass(id) {
+            if (id === this.$store.getters.BRAND) {
+                return this.classes.select
+            } else {
+                return this.classes.noSelect
+            }
+        }
     },
     mounted() {
         instance('brands')
