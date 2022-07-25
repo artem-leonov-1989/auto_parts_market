@@ -2,8 +2,8 @@ export default {
     data() {
         return {
             classes:{
-                select: 'btn-warning',
-                noSelect: 'btn-outline-primary',
+                select: 'btn-dark',
+                noSelect: 'btn-outline-dark',
             },
             selectId: null,
         }

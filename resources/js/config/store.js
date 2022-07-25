@@ -6,6 +6,9 @@ const store = createStore({
             userName: undefined,
             token: undefined,
             role: 'buyer',
+            selectBrand: undefined,
+            selectType: undefined,
+            selectCategory: undefined,
         }
     },
     getters: {
@@ -18,6 +21,15 @@ const store = createStore({
         ROLE: state => {
             return state.role
         },
+        BRAND: state => {
+            return state.selectBrand
+        },
+        TYPE: state => {
+            return state.selectType
+        },
+        CATEGORY: state => {
+            return state.selectCategory
+        },
     },
     mutations: {
         SET_TOKEN: (state, payload) => {
@@ -28,6 +40,15 @@ const store = createStore({
         },
         SET_ROLE: (state, payload) => {
             state.role = payload;
+        },
+        SET_BRAND: (state, payload) => {
+            state.selectBrand = payload;
+        },
+        SET_TYPE: (state, payload) => {
+            state.selectType = payload;
+        },
+        SET_CATEGORY: (state, payload) => {
+            state.selectCategory = payload;
         },
     },
     actions: {
