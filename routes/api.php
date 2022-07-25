@@ -19,8 +19,15 @@ Route::middleware('auth:api')
         Route::get('role', 'role');
     });
 
+Route::prefix('/brands')
+    ->controller(BrandController::class)
+    ->group(function () {
+        Route::get('/', 'index');
+        Route::get('/{id}', 'show');
+        Route::post('/store', 'store')->middleware('auth:api');
+    });
+
 Route::apiResources([
-    'brands' => BrandController::class,
     'parts' => PartController::class,
     'categories' => CategoryController::class,
     'types' => TypeController::class

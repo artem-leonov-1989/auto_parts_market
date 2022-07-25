@@ -20,6 +20,7 @@ export default {
     data() {
         return {
             brands:[],
+            refresh: false,
         }
     },
     methods: {
@@ -39,6 +40,6 @@ export default {
             .then(brands => {
                 this.brands = brands.data.data;
             })
-    }
+    },
 }
 </script>

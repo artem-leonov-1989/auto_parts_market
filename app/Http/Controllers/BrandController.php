@@ -15,7 +15,12 @@ class BrandController extends Controller
 
     public function store(Request $request)
     {
-        //
+        $brand = Brand::create([
+            'name' => $request->input('name'),
+        ]);
+        return response()->json([
+            'id' => $brand->id,
+        ]);
     }
 
     public function show($id)

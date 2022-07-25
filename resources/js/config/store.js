@@ -50,6 +50,9 @@ const store = createStore({
         SET_CATEGORY: (state, payload) => {
             state.selectCategory = payload;
         },
+        SET_NEWRECORD: (state, payload) => {
+            state.newRecord = payload;
+        },
     },
     actions: {
 
