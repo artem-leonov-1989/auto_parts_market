@@ -67,7 +67,7 @@ export default {
     },
     methods: {
         clear() {
-            this.id = '';
+            this.id = undefined;
             this.name = '';
             this.manufacturer = '';
             this.manufacturerCode = '';
@@ -92,7 +92,7 @@ export default {
                         }).then(r => {
                             if (r.status === 200) {
                                 this.clear()
-                                this.$router.go('/')
+                                this.$store.commit('SET_UPDATE', true)
                             }
                         }
                     )
@@ -110,6 +110,7 @@ export default {
                         }).then(r => {
                             if (r.status === 200) {
                                 this.clear()
+                                this.$store.commit('SET_UPDATE', true)
                             }
                         }
                     )

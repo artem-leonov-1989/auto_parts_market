@@ -42,9 +42,11 @@ export default {
             instance('parts')
                 .then(parts=>{
                     this.parts = parts.data.data
+                    this.$router.push('/');
                 })
                 .finally(()=>{
                     this.loading = false
+                    this.$store.commit('SET_UPDATE', false);
                 })
         }
     },
@@ -67,10 +69,18 @@ export default {
                     return value
                 }
             })
+        },
+        update: function () {
+            return this.$store.getters.UPDATE
         }
     },
-    beforeUpdate() {
+    watch: {
+        update: function (val) {
+            if (val) {
+                this.loadParts();
+            }
 
+        },
     },
     mounted() {
         this.loadParts();

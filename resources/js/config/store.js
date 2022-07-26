@@ -10,6 +10,7 @@ const store = createStore({
             selectType: undefined,
             selectCategory: undefined,
             selectPart: undefined,
+            update: false,
         }
     },
     getters: {
@@ -34,6 +35,9 @@ const store = createStore({
         PART: state => {
             return state.selectPart
         },
+        UPDATE: state => {
+            return state.update
+        }
     },
     mutations: {
         SET_TOKEN: (state, payload) => {
@@ -56,6 +60,9 @@ const store = createStore({
         },
         SET_PART: (state, payload) => {
             state.selectPart = payload;
+        },
+        SET_UPDATE: (state, payload) => {
+            state.update = payload;
         },
     },
     actions: {
