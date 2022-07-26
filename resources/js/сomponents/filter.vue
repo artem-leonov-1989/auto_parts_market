@@ -10,10 +10,6 @@
             <div id="collapseBrand" class="accordion-collapse collapse show" aria-labelledby="headingBrands">
                 <div class="accordion-body">
                     <brands-filter></brands-filter>
-                    <form class="d-flex justify-content-around mt-2" v-if="isManager">
-                        <input class="form-control" type="text" v-model="newBrand">
-                        <button class="btn btn-success ms-1" type="button" @click="addBrand">Додати</button>
-                    </form>
                 </div>
             </div>
             <h2 class="accordion-header" id="headingTypes">
@@ -47,8 +43,6 @@
 import brandsFilter from "./brands-filter.vue";
 import categoriesFilter from "./categories-filter.vue";
 import modelsFilter from "./models-filter.vue";
-import isAuth from "./mixins/isAuth";
-import {instance} from "../config/axios";
 
 export default {
     components: {
@@ -57,7 +51,7 @@ export default {
         modelsFilter
     },
     mixins: [
-        isAuth
+
     ],
     data() {
         return {
@@ -69,18 +63,6 @@ export default {
             this.$store.commit('SET_BRAND', undefined)
             this.$store.commit('SET_CATEGORY', undefined)
             this.$store.commit('SET_TYPE', undefined)
-        },
-        addBrand() {
-            if (this.newBrand.length > 2) {
-                instance.post('brands/store', {
-                    name: this.newBrand
-                }).then(newBrand => {
-                        if (newBrand.status === 200){
-                            this.$router.go('/');
-                        }
-                    }
-                )
-            }
         },
     },
     computed: {

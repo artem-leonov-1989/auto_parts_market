@@ -15,7 +15,9 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
-        //
+        Category::create([
+            'name' => $request->input('name'),
+        ]);
     }
 
     public function show($id)

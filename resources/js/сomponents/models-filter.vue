@@ -7,19 +7,26 @@
             {{ type.name }}
         </button>
     </div>
+    <form class="d-flex justify-content-around mt-2" v-if="isManager && selectBrand">
+        <input class="form-control" type="text" v-model="newType">
+        <button class="btn btn-success ms-1" type="button" @click="addType">Додати</button>
+    </form>
 </template>
 
 <script>
 import filterButtonSelect from "./mixins/filterButtonSelect";
 import {instance} from "../config/axios";
+import isAuth from "./mixins/isAuth";
 
 export default {
     mixins: [
         filterButtonSelect,
+        isAuth
     ],
     data() {
         return {
             types:[],
+            newType: '',
         }
     },
     methods: {
@@ -32,7 +39,24 @@ export default {
             } else {
                 return this.classes.noSelect
             }
-        }
+        },
+        addType() {
+            if (this.newType.length > 1) {
+                instance.post('types/store', {
+                    name: this.newType,
+                    brand_id: this.$store.getters.BRAND
+                }).then(newType => {
+                        if (newType.status === 200){
+                            this.newType = ''
+                            instance('types')
+                                .then(types => {
+                                    this.types = types.data.data;
+                                })
+                        }
+                    }
+                )
+            }
+        },
     },
     computed: {
         filterTypes() {
@@ -43,6 +67,9 @@ export default {
                     }
                 }
             })
+        },
+        selectBrand() {
+            return this.$store.getters.BRAND !== undefined
         }
     },
     mounted() {

@@ -15,7 +15,10 @@ class TypeController extends Controller
 
     public function store(Request $request)
     {
-        //
+        Type::create([
+            'name' => $request->input('name'),
+            'brand_id' => $request->input('brand_id')
+        ]);
     }
 
     public function show($id)

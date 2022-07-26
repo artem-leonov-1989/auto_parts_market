@@ -7,19 +7,26 @@
             {{ category.name }}
         </button>
     </div>
+    <form class="d-flex justify-content-around mt-2" v-if="isManager">
+        <input class="form-control" type="text" v-model="newCategory">
+        <button class="btn btn-success ms-1" type="button" @click="addCategory">Додати</button>
+    </form>
 </template>
 
 <script>
 import filterButtonSelect from "./mixins/filterButtonSelect";
 import {instance} from "../config/axios";
+import isAuth from "./mixins/isAuth";
 
 export default {
     mixins: [
         filterButtonSelect,
+        isAuth
     ],
     data() {
         return {
             categories:[],
+            newCategory: '',
         }
     },
     methods: {
@@ -31,6 +38,22 @@ export default {
                 return this.classes.select
             } else {
                 return this.classes.noSelect
+            }
+        },
+        addCategory() {
+            if (this.newCategory.length > 3) {
+                instance.post('categories/store', {
+                    name: this.newCategory
+                }).then(newCategory => {
+                        if (newCategory.status === 200){
+                            this.newCategory = ''
+                            instance('categories')
+                                .then(categories => {
+                                    this.categories = categories.data.data;
+                                })
+                        }
+                    }
+                )
             }
         }
     },

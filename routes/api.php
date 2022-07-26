@@ -27,8 +27,21 @@ Route::prefix('/brands')
         Route::post('/store', 'store')->middleware('auth:api');
     });
 
+Route::prefix('/categories')
+    ->controller(CategoryController::class)
+    ->group(function () {
+        Route::get('/', 'index');
+        Route::get('/{id}', 'show');
+        Route::post('/store', 'store')->middleware('auth:api');
+    });
+
+Route::prefix('/types')
+    ->controller(TypeController::class)
+    ->group(function () {
+        Route::get('/', 'index');
+        Route::get('/{id}', 'show');
+        Route::post('/store', 'store')->middleware('auth:api');
+    });
 Route::apiResources([
-    'parts' => PartController::class,
-    'categories' => CategoryController::class,
     'types' => TypeController::class
 ]);
