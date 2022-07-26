@@ -42,6 +42,11 @@ Route::prefix('/types')
         Route::get('/{id}', 'show');
         Route::post('/store', 'store')->middleware('auth:api');
     });
-Route::apiResources([
-    'types' => TypeController::class
-]);
+
+Route::prefix('/parts')
+    ->controller(PartController::class)
+    ->group(function () {
+        Route::get('/', 'index');
+        Route::get('/{id}', 'show');
+        Route::post('/store', 'store')->middleware('auth:api');
+    });

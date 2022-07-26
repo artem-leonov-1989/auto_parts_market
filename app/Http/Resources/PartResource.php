@@ -23,7 +23,6 @@ class PartResource extends JsonResource
             'price' => $this->price,
             'category_id' => $this->category_id,
             'type_id' => $this->type_id,
-            'auto_id' => $this->auto_id,
             'stock_balance' => $this->stock_balance,
         ];
     }

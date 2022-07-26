@@ -15,6 +15,9 @@ class Part extends Model
         'description',
         'manufacturer_code',
         'manufacturer',
-        'price'
+        'price',
+        'stock_balance',
+        'category_id',
+        'type_id'
     ];
 }
