@@ -20,4 +20,9 @@ class Part extends Model
         'category_id',
         'type_id'
     ];
+
+    public function type(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Type::class);
+    }
 }

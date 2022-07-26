@@ -10,7 +10,7 @@
             <span class="visually-hidden">Loading...</span>
         </div>
     </div>
-    <div class="row row-cols-1 row-cols-lg-4 g-4" v-else>
+    <div class="row row-cols-1 row-cols-lg-3 g-3 overflow-scroll" v-else>
         <card v-for="card in showCards"
               :key=card.id
               :id=card.id
@@ -49,29 +49,32 @@ export default {
         }
     },
     computed: {
-        /*showCards() {
+        showCards: function () {
             return this.parts.filter((value) => {
-                if (this.idCategory !== null) {
-                    if (value.category_id === this.idCategory) {
+                if (this.$store.getters.CATEGORY !== undefined) {
+                    if (value.category_id === this.$store.getters.CATEGORY) {
                         return value
                     }
                 } else {
                     return value
                 }
             }).filter((value) => {
-                if (this.idAuto !== null) {
-                    if (value.auto_id === this.idAuto) {
+                if (this.$store.getters.TYPE !== undefined) {
+                    if (value.type_id === this.$store.getters.TYPE) {
                         return value
                     }
                 } else {
                     return value
                 }
             })
-        }*/
+        }
+    },
+    beforeUpdate() {
+
     },
     mounted() {
         this.loadParts();
-        /*let loadDate = setInterval(() => this.loadParts(), 30000);*/
+        /*let loadDate = setInterval(() => this.loadParts(), 10000);*/
        /* setTimeout(() => { clearInterval(loadDate); alert('stop'); }, 5000);*/
     }
 }

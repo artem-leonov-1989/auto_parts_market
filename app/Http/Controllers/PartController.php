@@ -34,7 +34,17 @@ class PartController extends Controller
 
     public function update(Request $request, $id)
     {
-        //
+        $part = Part::find($id);
+        $part->update([
+            'name' => $request->name,
+            'manufacturer' => $request->manufacturer,
+            'manufacturer_code' => $request->manufacturer_code,
+            'description' => $request->description,
+            'stock_balance' => $request->stock_balance,
+            'price' => $request->price,
+            'type_id' => $request->type_id,
+            'category_id' => $request->category_id,
+        ]);
     }
 
     public function destroy($id)

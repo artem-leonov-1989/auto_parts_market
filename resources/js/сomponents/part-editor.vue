@@ -33,7 +33,7 @@
             <div class="col-6">
                 <div class="mb-3">
                     <label for="price" class="form-label">Ціна</label>
-                    <input type="text" class="form-control" id="price" placeholder="1000,00" v-model="prise">
+                    <input type="text" class="form-control" id="price" placeholder="1000,00" v-model="price">
                     <div class="fs-6 text-danger mt-2 ms-2" v-if="errorPrice">Має бути натуральним, невідємним</div>
                 </div>
             </div>
@@ -55,27 +55,30 @@ import {instance} from "../config/axios";
 export default {
     data() {
         return {
+            id: undefined,
             name: '',
             manufacturer: '',
             manufacturerCode: '',
             description: '',
             stockBalance: 0,
-            prise: 0
+            price: 0
 
         }
     },
     methods: {
         clear() {
+            this.id = '';
             this.name = '';
             this.manufacturer = '';
             this.manufacturerCode = '';
             this.description = '';
             this.stockBalance = 0;
-            this.prise = 0;
+            this.price = 0;
+            this.$store.commit('SET_PART', undefined);
         },
         save() {
             if (this.permissionToSave) {
-                if (this.newPart) {
+                if (this.newPart && this.id === undefined) {
                     instance.post('parts/store',
                         {
                             name: this.name,
@@ -83,7 +86,25 @@ export default {
                             manufacturer_code: this.manufacturerCode,
                             description: this.description,
                             stock_balance: Number(this.stockBalance),
-                            price: this.prise,
+                            price: this.price,
+                            type_id: this.$store.getters.TYPE,
+                            category_id: this.$store.getters.CATEGORY
+                        }).then(r => {
+                            if (r.status === 200) {
+                                this.clear()
+                                this.$router.go('/')
+                            }
+                        }
+                    )
+                } else {
+                    instance.put(`parts/${this.id}`,
+                        {
+                            name: this.name,
+                            manufacturer: this.manufacturer,
+                            manufacturer_code: this.manufacturerCode,
+                            description: this.description,
+                            stock_balance: Number(this.stockBalance),
+                            price: this.price,
                             type_id: this.$store.getters.TYPE,
                             category_id: this.$store.getters.CATEGORY
                         }).then(r => {
@@ -124,7 +145,7 @@ export default {
             }
         },
         errorPrice: function () {
-            let value = Number(this.prise);
+            let value = Number(this.price);
             if (Number.isNaN(value)) {
                 return true
             } else {
@@ -134,6 +155,25 @@ export default {
         permissionToSave: function () {
             return !this.errorName && !this.errorManufacturer && !this.errorManufacturerCode && !this.errorDescription && !this.errorStockBalance && !this.errorPrice
         }
-    }
+    },
+    beforeUpdate() {
+        if (!this.newPart) {
+            instance(`parts/${this.$store.getters.PART}`).then( r => {
+                if (r.status === 200) {
+                    this.name = r.data.data.name;
+                    this.manufacturer = r.data.data.manufacturer;
+                    this.manufacturerCode = r.data.data.manufacturer_code;
+                    this.description = r.data.data.description;
+                    this.stockBalance = r.data.data.stock_balance;
+                    this.price = r.data.data.price;
+                    this.id = this.$store.getters.PART;
+                    this.$store.commit('SET_PART', undefined);
+                    this.$store.commit('SET_BRAND', r.data.data.brand_id);
+                    this.$store.commit('SET_CATEGORY', r.data.data.category_id);
+                    this.$store.commit('SET_TYPE', r.data.data.type_id);
+                }
+            })
+        }
+    },
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-    <div class="row justify-content-between mt-3">
+    <div class="row justify-content-around mt-3">
         <div class="col-2">
             <model-filter></model-filter>
         </div>

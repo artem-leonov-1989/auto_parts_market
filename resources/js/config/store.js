@@ -33,7 +33,7 @@ const store = createStore({
         },
         PART: state => {
             return state.selectPart
-        }
+        },
     },
     mutations: {
         SET_TOKEN: (state, payload) => {
@@ -56,7 +56,7 @@ const store = createStore({
         },
         SET_PART: (state, payload) => {
             state.selectPart = payload;
-        }
+        },
     },
     actions: {
 

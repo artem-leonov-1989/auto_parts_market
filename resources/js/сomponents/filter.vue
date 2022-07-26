@@ -2,7 +2,7 @@
     <div class="d-flex flex-column">
         <div class="accordion mb-3" id="accordionBrands">
             <h2 class="accordion-header" id="headingBrands">
-                <button class="accordion-button fs-4" type="button" data-bs-toggle="collapse"
+                <button class="accordion-button fs-5" type="button" data-bs-toggle="collapse"
                         data-bs-target="#collapseBrand" aria-expanded="true" aria-controls="collapseBrand">
                     Автомобільні бренди
                 </button>
@@ -13,7 +13,7 @@
                 </div>
             </div>
             <h2 class="accordion-header" id="headingTypes">
-                <button class="accordion-button fs-4" type="button" data-bs-toggle="collapse"
+                <button class="accordion-button fs-5" type="button" data-bs-toggle="collapse"
                         data-bs-target="#collapseTypes" aria-expanded="true" aria-controls="collapseTypes">
                     Автомобільні марки
                 </button>
@@ -24,7 +24,7 @@
                 </div>
             </div>
             <h2 class="accordion-header" id="headingCategories">
-                <button class="accordion-button fs-4" type="button" data-bs-toggle="collapse"
+                <button class="accordion-button fs-5" type="button" data-bs-toggle="collapse"
                         data-bs-target="#collapseCategories" aria-expanded="true" aria-controls="collapseCategories">
                     Категорії товарів
                 </button>

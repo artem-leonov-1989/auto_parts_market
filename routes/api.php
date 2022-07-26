@@ -49,4 +49,5 @@ Route::prefix('/parts')
         Route::get('/', 'index');
         Route::get('/{id}', 'show');
         Route::post('/store', 'store')->middleware('auth:api');
+        Route::put('/{id}', 'update')->middleware('auth:api');
     });

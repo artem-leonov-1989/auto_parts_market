@@ -8,7 +8,8 @@
                 <div class="h6 fw-bold" :class="currentClass">{{ availabilityText }}</div>
                 <h6 class="card-subtitle mb-2 text-muted">{{ manufacturer_code }}-{{ manufacturer }}</h6>
                 <h5 class="card-title">{{ price }} грн.</h5>
-                <button type="button" class="btn btn-primary" @click="addPartInBasket" :disabled="disabledButton">Придбати</button>
+                <button type="button" class="btn btn-primary" @click="addPartInBasket" :disabled="disabledButton" v-if="!isManager">Придбати</button>
+                <button type="button" class="btn btn-primary" @click="goToEdit" v-if="isManager">Редагувати</button>
             </div>
         </div>
     </div>
@@ -16,8 +17,11 @@
 
 <script>
 
+import isAuth from "./mixins/isAuth";
+
 export default {
     mixins: [
+        isAuth
     ],
     props: {
         id: Number,
@@ -40,6 +44,9 @@ export default {
                 localStorage.basket = JSON.stringify(basket);
             }
         },
+        goToEdit() {
+            this.$store.commit('SET_PART',this.id)
+        }
     },
     data() {
         return {

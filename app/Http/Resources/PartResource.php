@@ -24,6 +24,7 @@ class PartResource extends JsonResource
             'category_id' => $this->category_id,
             'type_id' => $this->type_id,
             'stock_balance' => $this->stock_balance,
+            'brand_id' => $this->type->brand->id
         ];
     }
 }
