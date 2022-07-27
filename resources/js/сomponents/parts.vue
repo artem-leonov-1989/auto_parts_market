@@ -4,7 +4,15 @@
             <model-filter></model-filter>
         </div>
         <div class="col-6">
-            <counter></counter>
+            <div class="mb-3 row">
+                <label for="searchInput" class="col-sm-1 col-form-label text-uppercase">пошук</label>
+                <div class="col-sm-8">
+                    <input id="searchInput" class="form-control mb-2 me-auto ms-auto" v-model="searchString" @input="search">
+                </div>
+            </div>
+            <div class="ms-auto me-auto">
+                <counter></counter>
+            </div>
         </div>
         <div class="col-3">
             <part-editor v-if="isManager"></part-editor>
@@ -28,5 +36,15 @@ export default {
     mixins: [
         isAuth
     ],
+    data() {
+        return {
+            searchString: '',
+        }
+    },
+    methods: {
+        search() {
+            this.$store.commit('SET_SEARCH', this.searchString);
+        }
+    }
 }
 </script>

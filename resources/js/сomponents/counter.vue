@@ -68,6 +68,14 @@ export default {
                 } else {
                     return value
                 }
+            }).filter((value) => {
+                if(this.$store.getters.SEARCH !== '') {
+                    if (value.name.includes(this.$store.getters.SEARCH)) {
+                        return value
+                    }
+                } else {
+                    return value
+                }
             })
         },
         update: function () {

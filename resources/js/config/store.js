@@ -11,6 +11,7 @@ const store = createStore({
             selectCategory: undefined,
             selectPart: undefined,
             update: false,
+            searchString: '',
         }
     },
     getters: {
@@ -37,6 +38,9 @@ const store = createStore({
         },
         UPDATE: state => {
             return state.update
+        },
+        SEARCH: state => {
+            return state.searchString
         }
     },
     mutations: {
@@ -64,10 +68,10 @@ const store = createStore({
         SET_UPDATE: (state, payload) => {
             state.update = payload;
         },
+        SET_SEARCH: (state, payload) => {
+            state.searchString = payload;
+        }
     },
-    actions: {
-
-    }
 })
 
 export default store;
