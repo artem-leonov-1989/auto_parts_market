@@ -23,6 +23,7 @@ export default {
         return {
             email: '',
             password: '',
+            error: undefined,
         }
     },
     methods: {
@@ -47,7 +48,7 @@ export default {
                         }
                     })
                     .catch(function (error) {
-                        console.error(error);
+                        /*console.error(error);*/
                     });
             }
         },

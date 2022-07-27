@@ -90,7 +90,6 @@ export default {
             }).then(r => {
                 if (r.data.status === 'success') {
                     this.$store.commit('SET_TOKEN', r.data.authorisation.token);
-                    console.log(r.data.user.role);
                     localStorage.token = r.data.authorisation.token;
                     this.$store.commit('SET_ROLE', r.data.user.role);
                     this.$store.commit('SET_USERNAME', r.data.user.name)

@@ -6,6 +6,7 @@ axios.defaults.headers.common = {'Authorization': `bearer ${localStorage.token}`
 const instance = axios.create({
     headers: {
         'Content-Type': 'application/json',
+        'Accept': 'application/json',
     },
     baseURL: 'http://auto-market.test/api/',
     timeout: 3000,

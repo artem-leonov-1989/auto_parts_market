@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\OrderResource;
 use App\Models\Order;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class OrderController extends Controller
@@ -13,7 +15,7 @@ class OrderController extends Controller
 
     public function index()
     {
-        //
+        return OrderResource::collection(Order::all());
     }
 
 
@@ -34,9 +36,12 @@ class OrderController extends Controller
 
     public function show($id)
     {
-        //
+        return new OrderResource(Order::find($id));
     }
 
+    public function searchByUser() {
+        return response()->json(DB::table('orders')->where('user_id', Auth::id())->get('id'));
+    }
 
     public function update(Request $request, $id)
     {

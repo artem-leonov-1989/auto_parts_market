@@ -60,4 +60,5 @@ Route::middleware('auth:api')
         Route::get('/', 'index');
         Route::get('/{id}', 'show');
         Route::post('/store', 'store');
+        Route::post('/user', 'searchByUser');
     });

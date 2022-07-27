@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->string('order_number', 6)->unique();
+            $table->string('status', 10)->default('new');
+            $table->string('post_ttn', 15)->nullable();
             $table->timestamps();
         });
     }
