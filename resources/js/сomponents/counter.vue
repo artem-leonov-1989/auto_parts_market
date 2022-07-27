@@ -18,7 +18,8 @@
               :manufacturer_code=card.manufacturer_code
               :manufacturer=card.manufacturer
               :price=card.price
-              :stock_balance=card.stock_balance>
+              :stock_balance=card.stock_balance
+              :description="card.description">
         </card>
     </div>
 </template>
@@ -70,7 +71,7 @@ export default {
                 }
             }).filter((value) => {
                 if(this.$store.getters.SEARCH !== '') {
-                    if (value.name.includes(this.$store.getters.SEARCH)) {
+                    if (value.manufacturer_code.includes(this.$store.getters.SEARCH)) {
                         return value
                     }
                 } else {
@@ -92,8 +93,6 @@ export default {
     },
     mounted() {
         this.loadParts();
-        /*let loadDate = setInterval(() => this.loadParts(), 10000);*/
-       /* setTimeout(() => { clearInterval(loadDate); alert('stop'); }, 5000);*/
     }
 }
 </script>

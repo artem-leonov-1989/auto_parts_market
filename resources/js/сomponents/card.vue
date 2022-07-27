@@ -5,8 +5,9 @@
                 <h5 class="card-title">{{ name }}</h5>
             </div>
             <div class="card-body">
-                <div class="h6 fw-bold" :class="currentClass">{{ availabilityText }}</div>
-                <h6 class="card-subtitle mb-2 text-muted">{{ manufacturer_code }}-{{ manufacturer }}</h6>
+                <div class="h6 fw-bold mb-3" :class="currentClass">{{ availabilityText }}</div>
+                <h6 class="card-subtitle mb-3 text-muted">{{ manufacturer_code }}-{{ manufacturer }}</h6>
+                <div class="h6 border-bottom border-top pb-3 pt-2">{{ description }}</div>
                 <h5 class="card-title">{{ price }} грн.</h5>
                 <button type="button" class="btn btn-primary" @click="addPartInBasket" :disabled="disabledButton" v-if="!isManager">Придбати</button>
                 <button type="button" class="btn btn-primary" @click="goToEdit" v-if="isManager">Редагувати</button>
@@ -30,14 +31,23 @@ export default {
         manufacturer: String,
         price: Number,
         stock_balance: Number,
+        description: String,
     },
     methods: {
         addPartInBasket() {
             let basket;
-            let card = [this.id, 1, this.price, new Date()];
+            let card = [this.id, 1, this.price, this.name , this.manufacturer_code + '-' + this.manufacturer, this.stock_balance];
             if (localStorage.basket) {
                 basket = JSON.parse(localStorage.basket);
-                basket.push(card);
+                let check = true
+                basket.forEach((values) => {
+                    if (values[0] === this.id) {
+                        check = false
+                    }
+                })
+                if (check) {
+                    basket.push(card);
+                }
                 localStorage.basket = JSON.stringify(basket);
             } else {
                 basket = [card];

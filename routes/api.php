@@ -7,6 +7,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PartController;
 use App\Http\Controllers\TypeController;
+use App\Http\Controllers\OrderController;
 
 
 Route::middleware('auth:api')
@@ -50,4 +51,13 @@ Route::prefix('/parts')
         Route::get('/{id}', 'show');
         Route::post('/store', 'store')->middleware('auth:api');
         Route::put('/{id}', 'update')->middleware('auth:api');
+    });
+
+Route::middleware('auth:api')
+    ->prefix('/orders')
+    ->controller(OrderController::class)
+    ->group(function () {
+        Route::get('/', 'index');
+        Route::get('/{id}', 'show');
+        Route::post('/store', 'store');
     });

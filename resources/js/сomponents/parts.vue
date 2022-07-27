@@ -5,9 +5,9 @@
         </div>
         <div class="col-6">
             <div class="row">
-                <label for="searchInput" class="col-sm-2 col-form-label text-uppercase ms-2">пошук</label>
+                <label for="searchInput" class="col-sm-1 col-form-label">Пошук</label>
                 <div class="col-sm-7">
-                    <input id="searchInput" class="form-control ms-2 mb-2" v-model="searchString" @input="search">
+                    <input id="searchInput" class="form-control mb-2" v-model="searchString" @input="search">
                 </div>
             </div>
             <div class="ms-auto me-auto">
