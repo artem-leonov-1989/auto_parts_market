@@ -41,7 +41,7 @@ const store = createStore({
         },
         SEARCH: state => {
             return state.searchString
-        }
+        },
     },
     mutations: {
         SET_TOKEN: (state, payload) => {
@@ -70,7 +70,7 @@ const store = createStore({
         },
         SET_SEARCH: (state, payload) => {
             state.searchString = payload;
-        }
+        },
     },
 })
 
