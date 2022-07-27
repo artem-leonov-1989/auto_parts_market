@@ -32,6 +32,10 @@
     <div class="h6 text-center text-danger" v-if="!isAuthorized">Для замовлення треба увійти до аккаунту.</div>
     <button class="btn btn-success mt-3 w-100" @click="makeOrder" :disabled="disabledButton">Замовити</button>
     <button class="btn btn-danger mt-3 w-100" @click="clear">Очистити</button>
+    <vue-basic-alert
+        :duration="300"
+        :closeIn="10000"
+        ref="alert"/>
 </template>
 
 <script>
@@ -64,7 +68,14 @@ export default {
                 basket: localStorage.basket
             })
                 .then(r => {
-                    console.log(r.data.order_number)
+                    this.$refs.alert.showAlert(
+                        'success', // There are 4 types of alert: success, info, warning, error
+                        `Замовлення ${ r.data.order_number } успішно сформовано`, // Message of the alert
+                        'Успіх', // Header of the alert
+                        { iconSize: 35, // Size of the icon (px)
+                            iconType: 'solid', // Icon styles: now only 2 styles 'solid' and 'regular'
+                            position: 'top right' } // Position of the alert 'top right', 'top left', 'bottom left', 'bottom right'
+                    )
                     this.clear()
                 }).catch(function (error) {
                 console.log(error);
