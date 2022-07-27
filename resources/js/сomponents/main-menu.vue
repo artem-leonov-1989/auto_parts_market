@@ -2,21 +2,24 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
 
-            <div v-if="isManager" class="d-flex justify-content-between w-75">
-                <ul class="navbar-nav" v-if="isManager">
-                    <li class="nav-item">
-                        <router-link to="/sale" class="nav-link my-nav-link">Замовлення</router-link>
-                    </li>
+            <div v-if="isManager" class="d-flex justify-content-end w-100">
+                <ul class="navbar-nav">
                     <li class="nav-item">
                         <router-link to="/" class="nav-link my-nav-link">Комплектуючі</router-link>
+                    </li>
+                    <li class="nav-item">
+                        <router-link to="/sale" class="nav-link my-nav-link">Замовлення</router-link>
                     </li>
                 </ul>
             </div>
 
-            <div v-else class="d-flex justify-content-between w-50">
+            <div v-else class="d-flex justify-content-end w-100">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <router-link to="/" class="nav-link my-nav-link">Магазин</router-link>
+                        <router-link to="/" class="nav-link my-nav-link  me-5">Магазин</router-link>
+                    </li>
+                    <li class="nav-item me-5" v-if="isAuthorized">
+                        <router-link to="/sale" class="nav-link my-nav-link">{{ userName }}</router-link>
                     </li>
                 </ul>
             </div>
@@ -36,6 +39,11 @@ export default {
     ],
     components: {
         login
+    },
+    computed: {
+        userName: function () {
+            return this.$store.getters.USERNAME
+        }
     },
 }
 </script>
